@@ -1,6 +1,17 @@
+
+{% extends "shared/base.html" %}
+
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ movie.title }}</h2>
+
 <img alt="{{ movie.title }} poster" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/{{ movie.poster_path }}"/>
+
 <ul>
-  <li> Title: {{ movie.title }}</li>
+
   <li> Tagline: {{ movie.tagline }}</li>
   <li> Overview: {{ movie.overview }}</li>
 </ul>
+
+{% endblock %}
