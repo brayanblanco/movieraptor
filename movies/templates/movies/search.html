@@ -1,0 +1,16 @@
+{% extends "shared/base.html" %}
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+{% if movie_list %}
+    <ul>
+    {% for movie in movie_list %}
+        <li><a href="{% url 'movies:detail' movie.id %}">{{ movie.title }}<a></li>
+    {% empty %}
+        No movies
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No movies match the search terms.</p>
+{% endif %}
+{% endblock %}

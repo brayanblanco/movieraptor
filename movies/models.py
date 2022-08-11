@@ -7,11 +7,18 @@ class Setting(models.Model):
         return self.name
 
 class Movie(models.Model):
-    def __init__(self, movie_info):
-        self.title = movie_info.title
-        self.tagline = movie_info.tagline
-        self.overview = movie_info.overview
-        self.poster_path = movie_info.poster_path
+    def __init__(self, id, title):
+        self.id = id
+        self.title = title
+
+    @classmethod
+    def from_movie_info(cls, movie_info):
+        movie = cls(movie_info.id, movie_info.title)
+        movie.tagline = movie_info.tagline
+        movie.overview = movie_info.overview
+        movie.poster_path = movie_info.poster_path
+        return movie
+
     def __str__(self):
         return self.title
     class Meta:
