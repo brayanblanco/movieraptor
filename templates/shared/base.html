@@ -1,9 +1,17 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <script>
+      function search() {
+        var url = "{% url 'movies:search' 'search_terms' 1 %}";
+        var search_terms = document.getElementById("txtSearch").value;
+
+        location.href = url.replace("search_terms", search_terms);
+      }
+    </script>
 </head>
 <body>
-    <header><h1>Movie Raptor</h1></header>
+    <header><h1>Movie Raptor</h1> <input type="text" id="txtSearch" /><input type="button" value="Search" onclick="search()" /></header>
     {% block content %}{% endblock %}
     <footer>Movie data from TMDb</footer>
 </body>

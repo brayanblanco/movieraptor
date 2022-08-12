@@ -2,7 +2,7 @@ import tmdbsimple as tmdb
 
 from  requests.exceptions import HTTPError
 
-from .models import Setting, Movie
+from .models import Setting, Movie, MovieList
 
 try:
     tmdb.API_KEY = Setting.objects.get(name='API_KEY').value
@@ -16,12 +16,12 @@ def get_movie_by_id(movie_id):
 
     return movie
 
-def search_movies(search_terms):
+def search_movies(search_terms, page):
     search = tmdb.Search()
-    search.movie(query = search_terms)
+    search.movie(query = search_terms, page = page)
 
-    movies = []
+    movies = MovieList(search.total_pages)
     for movie in search.results:
-        movies.append(Movie(movie["id"], movie["title"]))
+        movies.movies.append(Movie(movie["id"], movie["title"]))
 
     return movies

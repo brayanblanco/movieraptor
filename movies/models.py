@@ -21,5 +21,14 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+        
+    class Meta:
+        managed = False
+
+class MovieList(models.Model):
+    def __init__(self, total_pages):
+        self.total_pages = total_pages
+        self.movies = []
+
     class Meta:
         managed = False
